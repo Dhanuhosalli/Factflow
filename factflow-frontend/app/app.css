@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+html,
+body {
+  @apply bg-black text-white;
+  color-scheme: dark;
+}
+
+/* Neon glow effects */
+.shadow-neon-green {
+  box-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14, 0 0 15px #39FF14;
+}
+
+.shadow-neon-blue {
+  box-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF, 0 0 15px #00FFFF;
+}
+
+.shadow-neon-red {
+  box-shadow: 0 0 5px #FF0000, 0 0 10px #FF0000, 0 0 15px #FF0000;
+}
+
+/* Custom animation for the hero text */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px #39FF14);
+  }
+  50% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 16px #39FF14);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom background colors to replace bg-dark */
+.bg-dark {
+  background-color: #121212;
+}
+
+.bg-dark-lighter {
+  background-color: #1E1E1E;
+}
+
+.bg-dark-lightest {
+  background-color: #2A2A2A;
+}
+
+/* Animation Delay Utilities */
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animation-delay-800 {
+  animation-delay: 0.8s;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
