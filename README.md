@@ -1,108 +1,110 @@
-# FactFlow AI - Fake News Detection
+# FactFlow - AI-Powered Fact Checking System
 
-FactFlow AI is a web application that helps users detect misinformation in text and images using AI-powered fake news analysis.
+FactFlow is a full-stack application that uses AI to detect and verify fake news. It combines multiple AI models and OCR technology to analyze both text and image-based content.
 
-## Project Structure
+## Features
 
-- **factflow-frontend**: React frontend application
-- **factflow-backend**: Flask backend API for fake news detection
+- Text-based fact checking
+- Image-based fact checking with OCR
+- User authentication and history tracking
+- Real-time confidence scoring
+- Multi-language support
+- Detailed analysis explanations
+
+## Tech Stack
+
+- **Frontend**: React.js
+- **Backend**: Flask (Python)
+- **Database**: MongoDB
+- **AI Models**: 
+  - Hugging Face Transformers
+  - Google Gemini
+  - Tesseract OCR
 
 ## Prerequisites
 
-- Node.js (16.x or later)
-- Python (3.8 or later)
-- Tesseract OCR (for image text extraction)
+- Python 3.8+
+- Node.js 14+
+- MongoDB
+- Tesseract OCR
+- API Keys:
+  - Google Gemini API
+  - Hugging Face API
 
-## Setting Up the Backend
+## Setup Instructions
 
-1. Navigate to the backend directory:
+1. **Clone the repository**
+   ```bash
+   git clone [your-repository-url]
+   cd factflow
    ```
+
+2. **Backend Setup**
+   ```bash
    cd factflow-backend
-   ```
-
-2. Create a virtual environment:
-   ```
    python -m venv venv
-   ```
-
-3. Activate the virtual environment:
-   - On Windows:
-     ```
-     venv\Scripts\activate
-     ```
-   - On macOS/Linux:
-     ```
-     source venv/bin/activate
-     ```
-
-4. Install the required dependencies:
-   ```
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    pip install -r requirements.txt
    ```
 
-5. Make sure Tesseract OCR is installed:
-   - On Windows: Download and install from https://github.com/UB-Mannheim/tesseract/wiki
-   - On macOS: `brew install tesseract`
-   - On Ubuntu: `sudo apt install tesseract-ocr`
-
-   If Tesseract is installed in a non-standard location, update the path in the app.py file:
-   ```python
-   pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'  # Example path for Windows
-   ```
-
-6. Start the Flask backend:
-   ```
-   python app.py
-   ```
-   The backend will run on http://localhost:5000
-
-## Setting Up the Frontend
-
-1. Navigate to the frontend directory:
-   ```
+3. **Frontend Setup**
+   ```bash
    cd factflow-frontend
-   ```
-
-2. Install the required dependencies:
-   ```
    npm install
    ```
 
-3. Start the development server:
+4. **Environment Variables**
+   Create a `.env` file in the `factflow-backend` directory with:
    ```
-   npm run dev
+   GEMINI_API_KEY=your_gemini_api_key
+   HF_API_TOKEN=your_huggingface_token
+   MONGODB_URI=mongodb://localhost:27017
    ```
-   The frontend will run on http://localhost:3000
 
-## Using the Application
+5. **Start MongoDB**
+   Make sure MongoDB is running on your system
 
-1. Open your browser and navigate to http://localhost:3000
-2. Click "Get Started" to begin
-3. Choose between text-based or image-based analysis
-4. Enter a news headline or upload an image containing text
-5. Click "Check News" to analyze the content
-6. View the detailed results showing the AI's assessment
+6. **Run the Application**
+   - Start backend:
+     ```bash
+     cd factflow-backend
+     python app.py
+     ```
+   - Start frontend:
+     ```bash
+     cd factflow-frontend
+     npm start
+     ```
 
-## API Endpoints
+## Project Structure
 
-- `POST /check_news`: Analyze a text input
-  ```json
-  {
-    "text": "Your news headline or article text here"
-  }
-  ```
+```
+factflow/
+├── factflow-backend/
+│   ├── app.py
+│   ├── requirements.txt
+│   └── .env
+├── factflow-frontend/
+│   ├── app/
+│   ├── public/
+│   └── package.json
+└── README.md
+```
 
-- `POST /check_news_image`: Analyze text in an image (form-data with 'image' field)
+## Contributing
 
-## Technologies Used
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-- **Frontend**: React, TailwindCSS
-- **Backend**: Flask, Google Gemini AI, Hugging Face models
-- **OCR**: Tesseract
-- **Translation**: Google Translator
+## License
 
-## Notes
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-- The application requires active internet connection for AI model APIs
-- For image analysis, clear and readable text yields better results
-- The system uses a primary model with fallback to Google's Gemini for uncertain cases 
+## Acknowledgments
+
+- Hugging Face for their transformer models
+- Google for the Gemini API
+- Tesseract OCR team 

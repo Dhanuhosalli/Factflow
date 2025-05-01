@@ -55,10 +55,6 @@ export default function Profile() {
     navigate('/login');
   };
 
-  const handleViewResult = (resultId) => {
-    navigate(`/result/${resultId}`);
-  };
-
   if (!user) {
     return <div>Redirecting to login...</div>;
   }
@@ -112,36 +108,41 @@ export default function Profile() {
                 <p className="mt-2">Start analyzing content to build your history!</p>
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {searchHistory.map((item) => (
                   <div 
                     key={item._id} 
-                    className="bg-dark p-4 rounded-lg hover:bg-dark-lightest cursor-pointer transition-colors"
-                    onClick={() => handleViewResult(item._id)}
+                    className="bg-dark p-4 rounded-lg border border-gray-700"
                   >
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="text-white font-medium mb-2 line-clamp-1">
-                          {item.content.substring(0, 100)}{item.content.length > 100 ? '...' : ''}
-                        </p>
-                        <p className="text-gray-400 text-sm">
-                          {new Date(item.timestamp).toLocaleString()}
-                        </p>
-                        <div className="mt-2">
-                          <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${
-                            item.result === 'REAL' ? 'bg-green-500/20 text-green-300' : 
-                            item.result === 'FAKE' ? 'bg-red-500/20 text-red-300' : 
-                            'bg-yellow-500/20 text-yellow-300'
-                          }`}>
-                            {item.result}
-                          </span>
-                          <span className="ml-2 text-gray-400 text-xs">
-                            Confidence: {item.confidence || 'N/A'}
+                    <div className="flex flex-col h-full">
+                      <div className="flex-1">
+                        <div className="flex justify-between items-start mb-3">
+                          <div className="flex flex-col">
+                            <span className={`px-3 py-1.5 rounded-full text-sm font-semibold ${
+                              item.result === 'REAL' ? 'bg-green-500/20 text-green-300' : 
+                              item.result === 'FAKE' ? 'bg-red-500/20 text-red-300' : 
+                              'bg-yellow-500/20 text-yellow-300'
+                            }`}>
+                              {item.result === 'REAL' ? '✅ REAL' : 
+                               item.result === 'FAKE' ? '❌ FAKE' : 
+                               '❓ UNSURE'}
+                            </span>
+                            <span className="mt-1 text-xs text-gray-400">
+                              Confidence: {item.confidence || 'N/A'}
+                            </span>
+                          </div>
+                          <span className="text-xs text-gray-400">
+                            {item.type === 'text' ? '📝 Text' : '🖼️ Image'}
                           </span>
                         </div>
+                        <p className="text-white text-sm line-clamp-2 mb-2">
+                          {item.content.substring(0, 100)}{item.content.length > 100 ? '...' : ''}
+                        </p>
                       </div>
-                      <div className="text-sm text-gray-400">
-                        {item.type === 'text' ? 'Text Analysis' : 'Image Analysis'}
+                      <div className="mt-auto pt-2 border-t border-gray-700">
+                        <div className="flex justify-end items-center text-xs text-gray-400">
+                          <span>{new Date(item.timestamp).toLocaleDateString()}</span>
+                        </div>
                       </div>
                     </div>
                   </div>

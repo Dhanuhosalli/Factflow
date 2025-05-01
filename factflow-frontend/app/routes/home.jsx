@@ -82,7 +82,7 @@ export default function Home() {
           userId: user.userId,
           content: content,
           type: contentType,
-          result: result.classification || 'UNKNOWN',
+          result: result.label || 'UNKNOWN',
           confidence: result.confidence_score || 0,
           timestamp: new Date().toISOString()
         }),
